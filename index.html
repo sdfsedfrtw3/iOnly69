@@ -1,75 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>discord.gg/1669</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: url('https://cdn.discordapp.com/avatars/1043191841811615826/9fbaab179944ee4a2c8abfe1af719856.webp?size=1024') no-repeat center center fixed;
-            background-size: cover;
-            font-family: 'Courier New', Courier, monospace;
-            color: #ff4848;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            text-align: center;
-        }
-        .image-container img {
-            width: 750px; 
-            height: auto;
-            border: 2px solid #ff4848; 
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 255, 0.7); 
-        }
-        .info {
-            margin-top: 20px;
-            font-size: 1.5em;
-            color: #ff4848; 
-            text-shadow: 0px 0px 8px #0000ff, 0px 0px 15px #0000ff, 0px 0px 25px #0000ff; 
-            letter-spacing: 4.5px; 
-            white-space: pre-wrap;
-        }
-        .text {
-            margin-top: 20px;
-            font-size: 3em; 
-            color: #ff4848; 
-            text-shadow: 0px 0px 8px #0000ff, 0px 0px 15px #0000ff, 0px 0px 25px #0000ff; 
-            letter-spacing: 4.5px; 
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title></title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Courier New', monospace;
+      color: #fff600;
+    }
+
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 1;
+    }
+
+    .glitch {
+      font-size: 3rem;
+      font-weight: bold;
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px red; }
+      20% { text-shadow: -2px -2px cyan; }
+      40% { text-shadow: 2px -2px lime; }
+      60% { text-shadow: -2px 2px magenta; }
+      80% { text-shadow: 2px 2px blue; }
+      100% { text-shadow: 0px 0px yellow; }
+    }
+
+    .typewriter {
+      overflow: hidden;
+      border-right: .15em solid yellow;
+      white-space: nowrap;
+      letter-spacing: .15em;
+      animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: yellow }
+    }
+
+    .info {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+  </style>
 </head>
 <body>
-    <div class="image-container">
-        <img src="" alt="">
-    </div>
-    <audio autoplay loop>
-        <source src="https://cdn.discordapp.com/attachments/1298336453285122180/1405872414948196363/lnWYqz8.mp3?ex=68a06837&is=689f16b7&hm=2935357538ab08cba00802ac0e4ceda1c15fde4366d6ca1a25be2ba58ee16ed9&" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <div class="info" id="ip-info">
-        <strong>IP: <span id="ip"></span></strong><br>
-        <span><strong>City:</strong> <span id="city"></span></span><br>
-        <span><strong>Region:</strong> <span id="region"></span></span><br>
-        <span><strong>Country:</strong> <span id="country"></span></span><br>
-        <span><strong>Location:</strong> <span id="loc"></span></span><br>
-        <span><strong>Organization:</strong> <span id="org"></span></span><br>
-        <span><strong>Timezone:</strong> <span id="timezone"></span></span>
-    </div>
-    <div class="text">discord.gg/1669 76i f7l of the server     </div>
 
-    <script>
-         fetch('https://ipinfo.io/json')
-        .then(response => response.json())
-        .then(data => {
-            delete data.readme;
-            const infoDiv = document.getElementById('ip-info');
-            infoDiv.textContent = JSON.stringify(data, null, 2);
-        });
-    </script>
+  <!-- Background Video -->
+  <iframe 
+    id="bgVideo"
+    src="https://www.youtube.com/embed/Hvphe2QWraE?enablejsapi=1&autoplay=1&loop=1&start=5&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; border: none;">
+  </iframe>
+
+  <script>
+    // Unmute after user interaction (required by browser policies)
+    document.addEventListener("click", () => {
+      const iframe = document.getElementById("bgVideo");
+      const currentSrc = iframe.src;
+      iframe.src = currentSrc.replace('mute=1', 'mute=0');
+    });
+    
+    // Also unmute on any user interaction
+    document.addEventListener("keydown", () => {
+      const iframe = document.getElementById("bgVideo");
+      const currentSrc = iframe.src;
+      iframe.src = currentSrc.replace('mute=1', 'mute=0');
+    });
+  </script>
+
+  <!-- Hacker UI -->
+  <div class="container">
+    <div class="glitch" id="typingText"></div>
+    <div class="info" id="ipInfo">Fetching info...</div>
+  </div>
+
+  <!-- Typing Animation -->
+  <script>
+    const messages = [
+      "velevt on top",
+      "join our disocrd",
+      "discord.gg/v26",
+      "and dont use hack in my server",
+      "xm7,76i if you want to unban you suck my duck"
+    ];
+    
+    let currentMessageIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+    let deletingSpeed = 50;
+    let pauseTime = 2000;
+    
+    function typeText() {
+      const element = document.getElementById("typingText");
+      const currentMessage = messages[currentMessageIndex];
+      
+      if (isDeleting) {
+        // Deleting text
+        element.textContent = currentMessage.substring(0, currentCharIndex - 1);
+        currentCharIndex--;
+        
+        if (currentCharIndex === 0) {
+          isDeleting = false;
+          currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+          setTimeout(typeText, 500);
+          return;
+        }
+        
+        setTimeout(typeText, deletingSpeed);
+      } else {
+        // Typing text
+        element.textContent = currentMessage.substring(0, currentCharIndex + 1);
+        currentCharIndex++;
+        
+        if (currentCharIndex === currentMessage.length) {
+          isDeleting = true;
+          setTimeout(typeText, pauseTime);
+          return;
+        }
+        
+        setTimeout(typeText, typingSpeed);
+      }
+    }
+    
+    // Start the typing animation
+    setTimeout(typeText, 1000);
+  </script>
+
+  <!-- IP Info Fetch -->
+  <script>
+    fetch("https://api.db-ip.com/v2/free/self")
+      .then(res => res.json())
+      .then(data => {
+        const info = `
+          IP: ${data.ipAddress}<br>
+          Country: ${data.countryName}<br>
+          City: ${data.city || 'Unknown'}<br>
+          ISP: Unknown
+        `;
+        document.getElementById("ipInfo").innerHTML = info;
+      })
+      .catch(() => {
+        document.getElementById("ipInfo").innerText = "Could not load IP info.";
+      });
+  </script>
+
 </body>
 </html>
